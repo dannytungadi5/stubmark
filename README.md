@@ -36,7 +36,7 @@ cargo test
 - The demo simulates the template. The Rust tests are the proof of the real behavior.
 - `sold` counts tickets ever issued, so a refund does not free a seat.
 - Binary is built with `opt-level = z`, LTO and `strip`; size is about 200 KiB after the wallet's wasm-opt pass, above the 96 KiB fee allowance, so publishing costs roughly 2 TARI (see the Ootle fee reference).
-- Status on Esmeralda: see the bottom of this file.
+- Status on Esmeralda: see "Verify on chain" below.
 
 ## Build
 
@@ -57,22 +57,38 @@ MIT, see `LICENSE`.
 
 Brand: a ticket stub with a check mark. Ink #0B1020, lime #C8F751, coral #FF6B4A, paper #F4EFE6.
 
-## Esmeralda status
+## Verify on chain
 
-Published on the Esmeralda testnet on 27 Nov 2026 (throwaway testnet wallet, no value).
+Everything below ran on the Esmeralda testnet (throwaway wallet, no value). Click a transaction to see it in the Veil explorer. Each one should show as accepted on network `esmeralda`.
 
 - Template address: `template_f1dbdb43e285d7b8c91a79b6f350d674ef5bce3a30e55cc86d5d4c0af2af9815`
-- Publish tx (Accepted, fee 2.29 tTARI, 205,934 bytes after wasm-opt): `a4daa677c64833430ccb48e9f2da7a087e68da4b7c3acedccec77bed71f3ab12`
-- Event component created: `component_22273851cf736d909eb0ed9616a36e32beab2007e52f5dcdfd9f16e191c7b007` (tx `9015dff62690355cc87f608d94293e2d7d4044e6b74841954af14d673ae68994`)
-- Buy ticket 1: `ad5b502dac7f25e6c44fe53ef430209793593f6732f912bc55908ee4825ac8ff`
-- Buy ticket 2: `ba1b965e14a88b9b6fe793c91ec56cf8b76f7b75aa19463b374b89ee53dd0ec9`
-- Refund ticket 1: `767380777d4f0867240952816cbd30835c22fc35fbc8ece094ecf22041a836a8`
-- Check-in ticket 2 (doors open, soulbound badge minted): `7ec7c6056937bf95c942901789a5c122571aaeac6986fdc2c3e669a9421ce646`
-- Second full cycle (new event `component_4fbc7f3e08ce0176236ac47d99840c9957794a1e9aabc4eb6e5aa8414313c74c`, refund window and doors both at epoch 13442):
-  - Create: `f705b5afe8c4e56e8f19973f0fd69ce037c74d2f8054bb769b1b361cad6f1599`
-  - Buy ticket 1: `cd40df51109cc1edfe866d3f21bf4680804b319edbb3df51898612d0b0a1fb66`
-  - Buy ticket 2: `9cb9e56e09de7a21915338fd07339244b5850df0f917d84a4e333ef2ee64b2f1`
-  - Refund ticket 1 (before the cutoff): `a0e9bab6bd650bbf027878d460a03e274d84259f0313af97eba74347f4bca7c1`
-  - Check-in ticket 2 (doors open, soulbound badge minted): `ff45f96c21edaafe59c762f0de92e66a926a94b20762aa66ff2cdb3765842824`
+- Cycle 1 event component: `component_22273851cf736d909eb0ed9616a36e32beab2007e52f5dcdfd9f16e191c7b007`
+- Cycle 2 event component: `component_4fbc7f3e08ce0176236ac47d99840c9957794a1e9aabc4eb6e5aa8414313c74c`
 
-Verified in the Ootle test engine too (28 tests).
+| Step | Transaction |
+|---|---|
+| Publish template (fee 2.29 tTARI) | [`a4daa677c648...`](https://testnet-explorer.tari.mw/tx/a4daa677c64833430ccb48e9f2da7a087e68da4b7c3acedccec77bed71f3ab12) |
+| Cycle 1: create event | [`9015dff62690...`](https://testnet-explorer.tari.mw/tx/9015dff62690355cc87f608d94293e2d7d4044e6b74841954af14d673ae68994) |
+| Cycle 1: buy ticket 1 | [`ad5b502dac7f...`](https://testnet-explorer.tari.mw/tx/ad5b502dac7f25e6c44fe53ef430209793593f6732f912bc55908ee4825ac8ff) |
+| Cycle 1: buy ticket 2 | [`ba1b965e14a8...`](https://testnet-explorer.tari.mw/tx/ba1b965e14a88b9b6fe793c91ec56cf8b76f7b75aa19463b374b89ee53dd0ec9) |
+| Cycle 1: refund ticket 1 | [`767380777d4f...`](https://testnet-explorer.tari.mw/tx/767380777d4f0867240952816cbd30835c22fc35fbc8ece094ecf22041a836a8) |
+| Cycle 1: check-in ticket 2 (badge minted) | [`7ec7c6056937...`](https://testnet-explorer.tari.mw/tx/7ec7c6056937bf95c942901789a5c122571aaeac6986fdc2c3e669a9421ce646) |
+| Cycle 2: create event | [`f705b5afe8c4...`](https://testnet-explorer.tari.mw/tx/f705b5afe8c4e56e8f19973f0fd69ce037c74d2f8054bb769b1b361cad6f1599) |
+| Cycle 2: buy ticket 1 | [`cd40df51109c...`](https://testnet-explorer.tari.mw/tx/cd40df51109cc1edfe866d3f21bf4680804b319edbb3df51898612d0b0a1fb66) |
+| Cycle 2: buy ticket 2 | [`9cb9e56e09de...`](https://testnet-explorer.tari.mw/tx/9cb9e56e09de7a21915338fd07339244b5850df0f917d84a4e333ef2ee64b2f1) |
+| Cycle 2: refund ticket 1 (before cutoff) | [`a0e9bab6bd65...`](https://testnet-explorer.tari.mw/tx/a0e9bab6bd650bbf027878d460a03e274d84259f0313af97eba74347f4bca7c1) |
+| Cycle 2: check-in ticket 2 (badge minted) | [`ff45f96c21ed...`](https://testnet-explorer.tari.mw/tx/ff45f96c21edaafe59c762f0de92e66a926a94b20762aa66ff2cdb3765842824) |
+
+Explorer: https://testnet-explorer.tari.mw/ . Full transaction ids are also in the explorer links above. Not shown on chain: a rejected second check-in. That rule is covered by the engine tests (`cargo test`), not by a published failing transaction.
+
+## Deploy your own
+
+1. Install Rust and the wasm target: `rustup target add wasm32-unknown-unknown`.
+2. Build: `cargo build --release --target wasm32-unknown-unknown`. The file is `target/wasm32-unknown-unknown/release/*.wasm`.
+3. Run `cargo test` to check the rules locally (about 90 seconds).
+4. Get an Ootle wallet on Esmeralda and fund it with testnet tTARI.
+5. Publish the wasm from the wallet (about 2 tTARI at this size, see Honest limits).
+6. Call `new` with a title, price, capacity, refund deadline epoch, doors-open epoch and end epoch. The result is your event component.
+7. Share the component address. Guests call `buy`, `refund`. Door staff call `check_in`.
+
+The browser demo in `demo/index.html` needs no wallet and no build.
