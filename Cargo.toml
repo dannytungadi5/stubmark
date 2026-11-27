@@ -1,0 +1,24 @@
+[package]
+name = "stubmark"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+description = "Stubmark: event tickets that cannot be faked, with a soulbound proof-of-attendance badge, refunds and organizer payout after the event, on Tari Ootle."
+
+[dependencies]
+tari_template_lib = { version = "0.42" }
+minicbor = { version = "2.2", default-features = false, features = ["alloc", "derive"] }
+
+[dev-dependencies]
+tari_template_test_tooling = "0.55"
+tari_utilities = "0.10"
+
+[profile.release]
+opt-level = 'z'
+lto = true
+codegen-units = 1
+panic = 'abort'
+strip = true
+
+[lib]
+crate-type = ["cdylib", "lib"]
