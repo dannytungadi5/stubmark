@@ -35,7 +35,7 @@ cargo test
 - The rotating QR code (new code every 5 seconds) is an off-chain front-end layer. It stops screenshots. The on-chain protection is the used flag: a second check-in is rejected by the template.
 - The demo simulates the template. The Rust tests are the proof of the real behavior.
 - `sold` counts tickets ever issued, so a refund does not free a seat.
-- Binary is built with `opt-level = z`, LTO and `strip`; size before the wallet's wasm-opt pass is about 248 KiB, above the 96 KiB fee allowance. Publishing costs roughly 3 to 4 TARI at that size (see the Ootle fee reference).
+- Binary is built with `opt-level = z`, LTO and `strip`; size is about 200 KiB after the wallet's wasm-opt pass, above the 96 KiB fee allowance, so publishing costs roughly 2 TARI (see the Ootle fee reference).
 - Status on Esmeralda: see the bottom of this file.
 
 ## Build
@@ -50,4 +50,14 @@ MIT, see `LICENSE`.
 
 ## Esmeralda status
 
-Not published on Esmeralda yet. On 27 Nov the public faucet held about 1.7 tXTR and allowed 0 per withdrawal, and publishing a template of this size costs about 3 to 4 tXTR, so there was nothing to pay the fee with. The template is verified in the Ootle test engine only (28 tests). If funds appear, publish with the wallet daemon's Publish Template page.
+Published on the Esmeralda testnet on 27 Nov 2026 (throwaway testnet wallet, no value).
+
+- Template address: `template_f1dbdb43e285d7b8c91a79b6f350d674ef5bce3a30e55cc86d5d4c0af2af9815`
+- Publish tx (Accepted, fee 2.29 tTARI, 205,934 bytes after wasm-opt): `a4daa677c64833430ccb48e9f2da7a087e68da4b7c3acedccec77bed71f3ab12`
+- Event component created: `component_22273851cf736d909eb0ed9616a36e32beab2007e52f5dcdfd9f16e191c7b007` (tx `9015dff62690355cc87f608d94293e2d7d4044e6b74841954af14d673ae68994`)
+- Buy ticket 1: `ad5b502dac7f25e6c44fe53ef430209793593f6732f912bc55908ee4825ac8ff`
+- Buy ticket 2: `ba1b965e14a88b9b6fe793c91ec56cf8b76f7b75aa19463b374b89ee53dd0ec9`
+- Refund ticket 1: `767380777d4f0867240952816cbd30835c22fc35fbc8ece094ecf22041a836a8`
+- Check-in: pending, doors open at epoch 13442.
+
+Verified in the Ootle test engine too (28 tests).
