@@ -641,3 +641,37 @@ fn only_the_component_can_mint_tickets() {
     let _ = r;
     assert_eq!(info(&mut test, &e).3, 0);
 }
+
+#[test]
+fn refund_still_works_on_the_last_epoch_before_the_deadline() {
+    let (mut test, _org, e) = setup();
+    let fan = actor(&mut test);
+    buy(&mut test, &fan, &e);
+    set_epoch(&mut test, REFUND_UNTIL - 1);
+    refund_tx(&mut test, &fan, &e);
+    assert_eq!(held(&test, fan.account, e.tickets), Amount::from(0u64));
+}
+
+#[test]
+fn buying_works_on_the_last_epoch_before_the_end() {
+    let (mut test, _org, e) = setup();
+    let fan = actor(&mut test);
+    set_epoch(&mut test, END - 1);
+    buy(&mut test, &fan, &e);
+    assert_eq!(held(&test, fan.account, e.tickets), Amount::from(1u64));
+}
+
+#[test]
+fn check_in_works_on_the_opening_epoch_and_the_last_epoch_before_the_end() {
+    let (mut test, org, e) = setup();
+    let first = actor(&mut test);
+    let second = actor(&mut test);
+    buy(&mut test, &first, &e);
+    buy(&mut test, &second, &e);
+    set_epoch(&mut test, DOORS);
+    check_in(&mut test, &org, &e, 1, &first);
+    set_epoch(&mut test, END - 1);
+    check_in(&mut test, &org, &e, 2, &second);
+    assert_eq!(held(&test, first.account, e.badges), Amount::from(1u64));
+    assert_eq!(held(&test, second.account, e.badges), Amount::from(1u64));
+}
