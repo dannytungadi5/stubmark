@@ -79,7 +79,17 @@ Everything below ran on the Esmeralda testnet (throwaway wallet, no value). Clic
 | Cycle 2: refund ticket 1 (before cutoff) | [`a0e9bab6bd65...`](https://testnet-explorer.tari.mw/tx/a0e9bab6bd650bbf027878d460a03e274d84259f0313af97eba74347f4bca7c1) |
 | Cycle 2: check-in ticket 2 (badge minted) | [`ff45f96c21ed...`](https://testnet-explorer.tari.mw/tx/ff45f96c21edaafe59c762f0de92e66a926a94b20762aa66ff2cdb3765842824) |
 
-Explorer: https://testnet-explorer.tari.mw/ . Full transaction ids are also in the explorer links above. Not shown on chain: a rejected second check-in. That rule is covered by the engine tests (`cargo test`), not by a published failing transaction.
+### Rejected on purpose
+
+These three transactions were sent on cycle 2 to show the rules hold on chain. The template rejects each one, and the network charges only the fee (status `OnlyFeeAccepted`, about 0.002 tTARI each). The wallet returned the reason shown.
+
+| Attempt | Transaction | Result |
+|---|---|---|
+| Second check-in of the same ticket | [`71f10d49b97a...`](https://testnet-explorer.tari.mw/tx/71f10d49b97a739da3622e9c910a4de1cf5411b248c44911c6d4610b42d21bda) | rejected: "ticket already used" |
+| Refund of a used ticket after the cutoff | [`3f581998f96c...`](https://testnet-explorer.tari.mw/tx/3f581998f96c38b885fe362d6e40674998099559bf51fc81713b7ffa3080fb3f) | rejected: "refund window has closed" |
+| Withdraw the soulbound badge | [`0e1d508b6908...`](https://testnet-explorer.tari.mw/tx/0e1d508b6908d3984c7525c1dd9d1b5022a2825048da6c998c73b04902a83f5d) | rejected: Access Denied on resource Withdraw |
+
+Explorer: https://testnet-explorer.tari.mw/ . The engine tests (`cargo test`) cover the same rules.
 
 ## Deploy your own
 
