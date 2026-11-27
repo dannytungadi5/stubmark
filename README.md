@@ -24,7 +24,7 @@ Tickets can only be minted by the component (address allocation lock) and are bu
 cargo test
 ```
 
-28 engine tests run the real template in `tari_template_test_tooling`, moving the epoch by hand. A full run takes about 90 seconds on 2 cores. Covered: price and capacity limits, every refund path, cancel and payout rules, staff management and the staff cap, check-in window, stranger rejection, double scan rejection, unknown and refunded ticket rejection, badge cannot move, only the component mints, and the invariant takings = sales - refunds.
+31 engine tests run the real template in `tari_template_test_tooling`, moving the epoch by hand. A full run takes about 90 seconds on 2 cores. Covered: price and capacity limits, the first and last valid epoch of each window, every refund path, cancel and payout rules, staff management and the staff cap, check-in window, stranger rejection, double scan rejection, unknown and refunded ticket rejection, badge cannot move, only the component mints, and the invariant takings = sales - refunds.
 
 ## Demo
 
