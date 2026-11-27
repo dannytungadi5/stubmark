@@ -48,6 +48,14 @@ cargo build --release --target wasm32-unknown-unknown
 
 MIT, see `LICENSE`.
 
+## Links
+
+- Website: https://stubmark.pages.dev/
+- Live demo (runs the template rules in your browser, no wallet): https://stubmark.pages.dev/demo/
+- Source: https://github.com/dannytungadi5/stubmark (MIT)
+
+Brand: a ticket stub with a check mark. Ink #0B1020, lime #C8F751, coral #FF6B4A, paper #F4EFE6.
+
 ## Esmeralda status
 
 Published on the Esmeralda testnet on 27 Nov 2026 (throwaway testnet wallet, no value).
@@ -58,6 +66,12 @@ Published on the Esmeralda testnet on 27 Nov 2026 (throwaway testnet wallet, no 
 - Buy ticket 1: `ad5b502dac7f25e6c44fe53ef430209793593f6732f912bc55908ee4825ac8ff`
 - Buy ticket 2: `ba1b965e14a88b9b6fe793c91ec56cf8b76f7b75aa19463b374b89ee53dd0ec9`
 - Refund ticket 1: `767380777d4f0867240952816cbd30835c22fc35fbc8ece094ecf22041a836a8`
-- Check-in: pending, doors open at epoch 13442.
+- Check-in ticket 2 (doors open, soulbound badge minted): `7ec7c6056937bf95c942901789a5c122571aaeac6986fdc2c3e669a9421ce646`
+- Second full cycle (new event `component_4fbc7f3e08ce0176236ac47d99840c9957794a1e9aabc4eb6e5aa8414313c74c`, refund window and doors both at epoch 13442):
+  - Create: `f705b5afe8c4e56e8f19973f0fd69ce037c74d2f8054bb769b1b361cad6f1599`
+  - Buy ticket 1: `cd40df51109cc1edfe866d3f21bf4680804b319edbb3df51898612d0b0a1fb66`
+  - Buy ticket 2: `9cb9e56e09de7a21915338fd07339244b5850df0f917d84a4e333ef2ee64b2f1`
+  - Refund ticket 1 (before the cutoff): `a0e9bab6bd650bbf027878d460a03e274d84259f0313af97eba74347f4bca7c1`
+  - Check-in ticket 2 (doors open, soulbound badge minted): `ff45f96c21edaafe59c762f0de92e66a926a94b20762aa66ff2cdb3765842824`
 
 Verified in the Ootle test engine too (28 tests).
