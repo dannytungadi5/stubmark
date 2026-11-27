@@ -52,6 +52,7 @@ MIT, see `LICENSE`.
 
 - Website: https://stubmark.pages.dev/
 - Live demo (runs the template rules in your browser, no wallet): https://stubmark.pages.dev/demo/
+- Demo video: https://youtu.be/cFXifmyB5Rs
 - Source: https://github.com/dannytungadi5/stubmark (MIT)
 
 Brand: a ticket stub with a check mark. Ink #0B1020, lime #C8F751, coral #FF6B4A, paper #F4EFE6.
